@@ -1,0 +1,114 @@
+
+BEGIN SAGE
+
+    // INITIALIZATION / POWER ON 
+    Initialize microphone array
+    Initialize camera
+    Initialize distance sensors
+    Initialize motor control system
+    Initialize medication schedule
+    Save initial robot position as HOME
+
+    Set robot state = IDLE
+
+
+    // MAIN SYSTEM LOOP
+    WHILE robot is powered ON:
+
+        Continuously monitor microphone array
+        Check medication schedule
+        Monitor system status
+
+
+        // VOICE COMMAND DETECTION
+        IF voice command detected:
+
+            Filter and process audio signal
+            Identify command keyword
+
+            IF command == "COME HERE":
+
+                Set robot state = LOCATING_USER
+
+                Estimate user direction using microphone array
+                Activate camera to search for user
+
+                IF user confirmed:
+
+                    Set robot state = NAVIGATING
+
+                    WHILE user not reached:
+
+                        Update estimated user direction
+                        Check distance sensors for obstacles
+
+                        IF obstacle detected:
+                            Stop motors
+                            Identify a clear path
+                            Navigate around obstacle
+
+                        ELSE:
+                            Move toward user
+
+                        Update estimated robot position
+
+                    Stop motors
+                    Set robot state = IDLE
+
+                ELSE:
+                    Stop motors
+                    Set robot state = IDLE
+
+
+            ELSE IF command == "HOME":
+
+                Set robot state = RETURNING_HOME
+
+                Estimate direction and distance to HOME
+
+                WHILE home base not reached:
+
+                    Check for obstacles
+
+                    IF obstacle detected:
+                        Stop motors
+                        Find a clear path
+                        Navigate around obstacle
+
+                    ELSE:
+                        Move toward home base
+
+                    Update estimated robot position
+
+                Stop motors
+                Set robot state = IDLE
+
+
+            ELSE IF command == "HELP":
+
+                Stop motors
+                Set robot state = EMERGENCY
+
+                Send alert to designated emergency contact
+                Wait for further instructions
+
+
+        // SCHEDULED TASKS
+        IF medication reminder time reached:
+
+            Play audio reminder
+            Wait for user to say "COME HERE"
+
+            IF user summons robot:
+                Navigate to user
+                Stop and await interaction
+                Initiate medication dispensing when requested
+
+
+        // IDLE BEHAVIOR
+        IF robot state == IDLE:
+            Keep motors stopped
+            Continue listening for commands
+
+
+END SAGE
