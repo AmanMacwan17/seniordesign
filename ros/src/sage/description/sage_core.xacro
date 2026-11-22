@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- First link of the Robot, centered around wheel -->
+    <link name="base_link">
+    </link>
+
+    <link name="chassis">
+        <visual>
+            <geometry>
+                <cylinder length="" radius=""/>
+            </geometry>
+        </visual>
+    </link>
+
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+    </joint>
+</robot>
